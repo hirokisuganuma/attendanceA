@@ -83,7 +83,7 @@ private
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, 
-      :affiliation,:specified_work_time, :basic_work_time)
+      :affiliation,:start_worktime,:end_worktime,:basic_work_time)
     end
     
     def correct_user

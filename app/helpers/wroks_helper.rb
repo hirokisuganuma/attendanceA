@@ -21,12 +21,17 @@ module WroksHelper
     end
     
     
-    def specified_time(work)
-      if work = User.find(params[:id]).specified_work_time
+    def start_worktime(work)
+      if work = User.find(params[:id]).start_worktime
          sprintf("%.2f", BigDecimal(((work - work.beginning_of_day)/60/60).to_s).to_f )
       end
     end
     
+    def end_worktime(work)
+      if work = User.find(params[:id]).end_worktime
+         sprintf("%.2f", BigDecimal(((work - work.beginning_of_day)/60/60).to_s).to_f )
+      end
+    end
     
     def basic_time(work)
       if work = User.find(params[:id]).basic_work_time
