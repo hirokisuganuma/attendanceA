@@ -13,20 +13,37 @@
       <%end%>
         
 
-  <table class="table-striped table-bordered">
-    <tr>
-      <th class="col-lg-1">日付</th>
-      <th class="col-lg-1">曜日</th>
-      <th class="col-lg-1">出退勤 ボタン</th>
-      <th class="col-lg-1">出社(時)</th>
-      <th class="col-lg-1">出社(分)</th>
-      <th class="col-lg-1">退社(時)</th>
-      <th class="col-lg-1">退社(分)</th>
-      <th class="col-lg-1">在社時間</th>
-      <th class="col-lg-1">備考</th>
-    </tr>
-  </table>
-  
+  <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <td rowspan="3" colspan="1" >残業申請</td>
+                        <td rowspan="3" colspan="1">日付</td>
+                        <td rowspan="3" colspan="1" >曜日</td>
+                        <td rowspan="1" colspan="8" >【実績】</td>
+                        <td rowspan="1" colspan="5" >所定外勤務</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1" colspan="3">出社</td>
+                        <td rowspan="1" colspan="3" >退社</td>
+                        <td rowspan="2" colspan="1" >在社時間</td>
+                        <td rowspan="2" colspan="1" >備考</td>
+                        <td rowspan="1" colspan="2" >終了予定時刻</td>
+                        <td rowspan="2" colspan="1" >時間外時間</td>
+                        <td rowspan="2" colspan="1" >業務処理内容</td>
+                        <td cellpadding="bottom" align="right" rowspan="2" colspan="1">指示者確認㊞</td>
+                    </tr>
+                    <tr>
+                        <td >時</td>
+                        <td >分</td>
+                        <td></td>
+                        <td >時</td>
+                        <td >分</td>
+                        <td></td>
+                        <td >時</td>
+                        <td >分</td> 
+                    </tr>
+                    </thead>
+  <!-- 修正必要になると思うがとりあえずレコード部まだ未実装のためとりあえずこの状態にしてる（課題表に上げておく） -->
   
   <table class="table-striped table-bordered">
     <% @works.each do |work| %>
