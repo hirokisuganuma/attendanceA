@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-#  get    'users/:id'    => 'works#show'
+  get    'users/:id'    => 'works#show'
   get    'users/:id/edit_basic_info',to:'users#edit_basic_info',as:'edit_basic_info'
   patch  'users/:id/update_basic_info' , to: 'users#update_basic_info',as:'update_basic_info'
   post   'works/:id', to: 'works#edit_works',as:'edit_works'
