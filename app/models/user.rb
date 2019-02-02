@@ -1,15 +1,9 @@
 class User < ApplicationRecord
+  include SessionsHelper
   has_many :works, dependent: :destroy
   accepts_nested_attributes_for :works
 
- # has_many :active_relationships,  class_name:  "Relationship",
- #                                  foreign_key: "follower_id",
- #                                 dependent:   :destroy
- # has_many :passive_relationships, class_name:  "Relationship",
- #                                  foreign_key: "followed_id",
- #                                  dependent:   :destroy
- # has_many :following, through: :active_relationships,  source: :followed
- # has_many :followers, through: :passive_relationships, source: :follower
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -21,7 +15,15 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  scope :activated, -> { where(activated: true) }
   
+  def User.get_sv_user_whithout_myself(session)
+    if User.find(session[:user_id]).sv == true
+      where(sv: true).where.not(id: session[:user_id])
+    else
+      where(sv: true)
+    end
+  end
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

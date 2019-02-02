@@ -51,12 +51,14 @@
         <td class="col-lg-1"><%= work.day.month %>月<%= work.day.day %>日</td>
         <td class="col-lg-1"><%= %w(日 月 火 水 木 金 土 日)[work.day.wday] %></td>
         <td class="col-lg-1">
+         <% if current_user.id == @user.id %> 
           <% if work.day == Date.today && work.attendance_time.nil? %> 
             <%= button_to "出社", work_path(work, button_type: "start"), class: "btn btn-default btn-min btn-block", :method => :patch %>
           <% end %>
           <% if work.day == Date.today && work.attendance_time && work.leaving_time.nil? %>
             <%= button_to "退社", work_path(work, button_type: "end"), class: "btn btn-default btn-min btn-block", :method => :patch %>
           <% end %>
+           <% end %>  
         </td>
         <td class="col-lg-1"><%= work.attendance_time.hour if work.attendance_time %></td>
         <td class="col-lg-1"><%= work.attendance_time.min if work.attendance_time %></td>
