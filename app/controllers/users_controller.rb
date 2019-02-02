@@ -70,52 +70,17 @@ class UsersController < ApplicationController
          render 'edit'
       end
   end
-  
+
+  def working_users
+    @users = User.get_working_user.paginate(page: params[:page])
+  end
   
   def destroy
-    User.find(params[:id]).destroy
+    User.fin(params[:id]).destroy
       flash[:success] = "ユーザー登録を削除しました"
         redirect_to users_url
   end
   
-  def base_edit
-    @bases = Base.all
-    @base = Base.new
-  end
-  
-  def base_add
-    @base = Base.new(base_params)
-      if @base.save
-        flash[:success] = "拠点情報を追加しました。"
-        redirect_to base_edit_users_path
-      else
-        render 'base_edit'
-      end
-  end
-  
-  def base_update
-    @base = Base.find(params[:id])
-      if @base.update(base_params)
-        flash[:success] = "拠点情報を更新しました。"
-        redirect_to base_edit_users_path
-      else
-        render 'base_edit'
-      end
-  end
-  
-  def base_delete
-    @base = Base.find(params[:id])
-      if @base.destroy
-        flash[:danger] = "拠点情報を削除しました。"
-        redirect_to base_edit_users_path
-      else
-        render 'base_edit'
-      end
-  end
-  
-  def base_edit_modal
-    @base = Base.find(params[:id])
-  end
    
 private
 

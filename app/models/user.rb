@@ -17,13 +17,13 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   scope :activated, -> { where(activated: true) }
   
-  def User.get_sv_user_whithout_myself(session)
-    if User.find(session[:user_id]).sv == true
-      where(sv: true).where.not(id: session[:user_id])
-    else
-      where(sv: true)
-    end
+  
+  def User.get_working_user
+    joins(:works).where(works:{day: Date.today, leaving_time: nil}).where.not(works: {attendance_time: nil})
   end
+
+
+
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

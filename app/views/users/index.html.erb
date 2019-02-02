@@ -4,6 +4,7 @@
 <%= will_paginate %>
 
 <%if current_user.try(:admin?)%>
+
 <ul class="users">
   <%= render @users %>
 </ul>
