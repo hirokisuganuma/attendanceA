@@ -1,16 +1,11 @@
 <% provide(:title, @user.name) %>
 
-
+<%if not current_user.try(:admin?)%>
 <div class="row">
   
   <%= render 'user_information'%>
     <%= render 'basic_information'%>
-      <%if current_user.try(:admin?)%>
-        <center>
-          <%= link_to "当該ユーザーの勤怠情報を編集", edit_work_path(date:@works), class: "btn btn-lg btn-primary" %>
-          <%= link_to "当該ユーザーの基本情報を編集", edit_basic_info_path(@user), class: "btn btn-lg btn-primary" %>
-        </center>
-      <%end%>
+      <%= link_to "当該ユーザーの勤怠情報を編集", edit_work_path(date:@works), class: "btn btn-lg btn-primary" %>
         
 
   <table class="table table-bordered table-striped">
@@ -71,3 +66,4 @@
   </table>
   
 </div>
+  <%end%>
