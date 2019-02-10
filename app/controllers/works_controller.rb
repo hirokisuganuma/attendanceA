@@ -1,5 +1,5 @@
 class WorksController < ApplicationController
-
+ 
   def show
     @user = User.find(params[:id])
      if    current_user.admin? 
@@ -19,6 +19,8 @@ class WorksController < ApplicationController
                 Work.create!(day: day,user_id: @user.id)
                 end
         end
+        
+      
   end
   
     
