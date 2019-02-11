@@ -3,7 +3,10 @@
 <h1>拠点一覧</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    
+    <%= render 'base_add_modal' %>
+<div class="modal fade" id="myModalLabel_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+
+</div>
     <table class="table table-bordered working-table table-striped">
         <thead>
             <tr>
@@ -36,10 +39,7 @@
   拠点情報の追加
 </button>
 
-<%= render 'base_add_modal' %>
-<div class="modal fade" id="myModalLabel_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 
-</div>
 
 <script>
     

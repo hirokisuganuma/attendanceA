@@ -1,9 +1,8 @@
-<div class="modal fade" id="base_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal-dialog" role="document">
     <div class="modal-content">
-    　<%= form_for @base, :url => { :controller => :bases, :action => :create },method: :post do |f| %>
+    　<%= form_for base, :url => { :controller => :bases, :action => :base_update },method: :patch do |f| %>
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel" style="display: inline-block;">拠点情報の追加</h3>
+        <h3 class="modal-title" id="exampleModalLabel" style="display: inline-block;">拠点情報　【編集】</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,6 +17,9 @@
       
       <%= f.label :勤怠種類 %>
       <%= f.text_field :kind, class: 'form-control' %>
+      
+      
+      <%= hidden_field_tag :id, base.id %>
          
       </div>
       <div class="modal-footer">
@@ -27,4 +29,3 @@
       <% end %>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
