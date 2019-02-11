@@ -15,7 +15,15 @@ Rails.application.routes.draw do
   post    'delete_base',to: 'bases#destroy',as:'delete_base'
   get    '/users/working_users'
   get    'users/:id'    => 'works#show'
+  get 'csv_output',to:'users#csv_output',as:'users_csv_output'
   resources :bases do
+    collection do
+      get  'base_edit'
+      post 'base_add'
+      patch 'base_update'
+      delete 'base_delete'
+      get 'base_edit_modal'
+    end
      
     end
   resources :works
@@ -23,7 +31,7 @@ Rails.application.routes.draw do
   resources :users do
     
   end
-  
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]

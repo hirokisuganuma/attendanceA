@@ -19,7 +19,9 @@ class WorksController < ApplicationController
                 Work.create!(day: day,user_id: @user.id)
                 end
         end
-        
+      
+       @date =  @user.works.find_by(day: @first_day)
+    
       
   end
   

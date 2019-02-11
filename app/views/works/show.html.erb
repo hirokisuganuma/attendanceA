@@ -6,7 +6,7 @@
   <%= render 'user_information'%>
     <%= render 'basic_information'%>
       <%= link_to "当該ユーザーの勤怠情報を編集", edit_work_path(date:@works), class: "btn btn-lg btn-primary" %>
-        
+        <%= link_to "csv出力",users_csv_output_path(id: @user, format: :csv, date: @date), {class: "btn btn-primary", id: "csv"} %>
 
   <table class="table table-bordered table-striped">
                     <thead>

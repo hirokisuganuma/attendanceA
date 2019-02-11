@@ -10,11 +10,13 @@ class UsersController < ApplicationController
          redirect_to(root_url) 
          flash[:warning] = "ほかのユーザにはアクセスできません"
       end
+      
   end
    
    
   def show
     @user = User.find(params[:id])
+    @date = @user.works.where(day: @first_day..@last_day)
   end
    
    
@@ -49,6 +51,14 @@ class UsersController < ApplicationController
          render 'edit'
       end
   end
+  
+  def csv_output
+    date = Work.find_by(date: day,id: user_id)
+    
+    @works = current_user.works.where(day: date.beginning_of_month..date.end_of_month ).order(:day)
+    send_data render_to_string, filename: "#{current_user.name}_#{params[:date].to_time.strftime("%Y年 %m月")}.csv", type: :csv
+  end
+  
   def base_edit
     @bases = Base.all
     @base = Base.new
