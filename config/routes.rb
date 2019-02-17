@@ -12,10 +12,11 @@ Rails.application.routes.draw do
   patch  'users/:id/update_basic_info' , to: 'users#update_basic_info',as:'update_basic_info'
   post   'works/:id', to: 'works#edit_works',as:'edit_works'
   get    'base_edit_modal',to: 'bases#base_edit_modal',as:'base_edit_modal'
-  post    'delete_base',to: 'bases#destroy',as:'delete_base'
+  post   'delete_base',to: 'bases#destroy',as:'delete_base'
   get    '/users/working_users'
   get    'users/:id'    => 'works#show'
-  get 'csv_output',to:'users#csv_output',as:'users_csv_output'
+  get    'csv_output',to:'users#csv_output',as:'users_csv_output'
+
   resources :bases do
     collection do
       get  'base_edit'
@@ -27,9 +28,7 @@ Rails.application.routes.draw do
      
     end
   resources :works
-  # resources :worksがあるので修正はいらなかったですね。そのままコントローラーのアクションcreateの追加とビューの名前変更で行けると思います！
   resources :users do
-    
   end
 
   resources :account_activations, only: [:edit]
