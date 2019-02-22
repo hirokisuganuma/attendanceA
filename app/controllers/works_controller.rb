@@ -7,11 +7,13 @@ class WorksController < ApplicationController
            redirect_to(root_url) 
            flash[:warning] = "ほかのユーザにはアクセスできません"
      end
+
       if  !params[:first_day].nil?
           @first_day = Date.parse(params[:first_day])
       else
           @first_day = Date.new(Date.today.year, Date.today.month)
       end
+
             @last_day = @first_day.end_of_month
             @works = @user.works.where(day: @first_day..@last_day)
         unless  @user.works.find_by(day: @first_day)
@@ -20,7 +22,7 @@ class WorksController < ApplicationController
                 end
         end
       
-       @date =  @user.works.find_by(day: @first_day)
+       @date =  @user.works.find_by(day: @first_day) #CSV用のもの
     
       
   end
@@ -34,11 +36,13 @@ class WorksController < ApplicationController
         redirect_to(root_url) 
             flash[:warning] = "ほかのユーザにはアクセスできません"
      end
+
       if  !params[:first_day].nil?
           @first_day = Date.parse(params[:first_day])
       else
           @first_day = Date.new(Date.today.year, Date.today.month)
       end
+      
             @last_day = @first_day.end_of_month
             @works = @user.works.where(day: @first_day..@last_day)
         unless  @user.works.find_by(day: @first_day)

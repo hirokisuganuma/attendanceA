@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       end
   end
   
-  def csv_output
+  def csv_output # 当該付きのDBは送れてそうだがうまくいってない
     date = Work.find_by(date: day,id: user_id)
     
     @works = current_user.works.where(day: date.beginning_of_month..date.end_of_month ).order(:day)
